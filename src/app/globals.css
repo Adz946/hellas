@@ -1,26 +1,63 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Fonts */
+  --font-sans: 'Roboto', Helvetica, Arial, sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Backgrounds */
+  --primary: #F4F5F7; 
+  --surface: #E5E7EB;  
+
+  /* Text and States */
+  --main: #1D2636;      
+  --active: #111111;         
+  --inactive: #727A8A; 
+
+  /* Buttons and Accents */
+  --accent: #D4AF37;       
+  --accent-hover: #B8962F;  
+
+  /* Status Colors */
+  --success: #008824;
+  --error: #D14343;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Backgrounds */
+    --primary: #12161F;
+    --surface: #1F2937;
+
+    /* Text and States */
+    --main: #E2E2E9;
+    --active: #FFFFFF;
+    --inactive: #9CA3AF;
+
+    /* Status Colors */
+    --success: #00B33C;
+    --error: #F87171;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ANIMATIONS */
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeSlideIn {
+  animation: fadeSlideIn 0.8s ease-in-out both;
+}
+
+.animate-imageSlideIn {
+  animation: fadeSlideIn 1s ease-in-out both;
+  animation-delay: 0.2s;
 }
