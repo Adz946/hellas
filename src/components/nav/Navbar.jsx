@@ -2,8 +2,8 @@
 import React from "react";
 import { NavShape } from "./NavShape";
 import { IconShape } from "./IconShape";
-import { MessagesSquare } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { MessagesSquare } from "lucide-react";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -12,10 +12,17 @@ export function Navbar() {
         <nav className="w-full h-full flex flex-col">
 
             <div className="w-full h-1/2 flex items-center justify-end gap-15 px-5">
-                <a href="/" className={`font-semibold ${pathname === "/" ? "text-main" : "text-inactive"}`}>Home</a>
-                <a href="/services" className={`font-semibold ${pathname === "/services" ? "text-main" : "text-inactive"}`}>Services</a>
-                <a href="#" className={`font-semibold ${pathname === "/about" ? "text-main" : "text-inactive"}`}>Contact</a>
-                <a href="#" className="text-accent text-xl font-semibold">Book Now</a>
+                <a href="/" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125 
+                    hover:text-main ${pathname === "/" ? "text-main" : "text-inactive scale-90"}`}>Home</a>
+
+                <a href="/services" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125
+                    hover:text-main ${pathname === "/services" ? "text-main" : "text-inactive scale-90"}`}>Services</a>
+
+                <a href="/contact" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125
+                    hover:text-main ${pathname === "/contact" ? "text-main" : "text-inactive scale-90"}`}>Contact</a>
+
+                <a href="/book" className={`text-accent text-xl font-semibold transform transition-transform duration-500 
+                ease-out hover:scale-115 ${pathname !== "/book" ? "opacity-75 hover:opacity-100" : null}`}>Book Now</a>
             </div>
 
             <div className="w-full h-1/2 flex items-center gap-15 relative">
@@ -31,7 +38,7 @@ export function Navbar() {
                     <div className="relative flex items-center justify-center h-full aspect-square"> 
                         <IconShape /> 
                         
-                        <MessagesSquare className="h-[2em] w-[2em] fill-surface absolute z-10 
+                        <MessagesSquare className="h-[2em] w-[2em] stroke-none fill-surface absolute z-10 
                             transition-transform duration-300 hover:scale-110 hover:fill-primary" />
                     </div>
                 </div>

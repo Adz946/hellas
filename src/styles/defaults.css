@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+/* BODY */
+body { overflow-x: hidden; }
+
+/* TEXT */
+.h1 { @apply text-accent text-5xl font-bold leading-tight mb-4; }
+.h2 { @apply text-accent text-4xl font-semibold leading-snug mb-4; }
+.h3 { @apply text-accent text-3xl font-semibold leading-snug mb-3; }
+.h4 { @apply text-accent text-2xl font-medium leading-normal mb-2; }
+.h5 { @apply text-accent text-xl font-medium leading-normal mb-1; }
+.h6 { @apply text-accent text-lg font-normal leading-snug; }
+.p { @apply text-main text-lg mb-2; }
+
+/* BUTTONS */
+.btn { @apply block w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl transition-transform duration-300 ease-out text-center; }
+.btn-hover { @apply hover:scale-110 hover:bg-accent-hover hover:translate-y-1; }
+
+/* BOOKING ELEMENTS */
+.sect { @apply w-full lg:w-3/4 flex flex-col items-center justify-center; }
+.b-menu { @apply hidden lg:flex w-1/4 px-10 py-2 gap-4 bg-back flex-col justify-center border-r-1 border-r-inactive; }
+
+.inp { @apply w-full py-4 px-4 my-2 bg-inactive text-primary rounded-sm focus:bg-active; }
+.slc { @apply w-full py-4 px-4 my-2 bg-surface text-main rounded-lg focus:bg-main focus:text-primary appearance-none; }
+
+.chevron { @apply pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-accent transition-transform 
+  duration-200 group-focus-within:scale-110; }  

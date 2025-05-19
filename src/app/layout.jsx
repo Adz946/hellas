@@ -1,4 +1,5 @@
-import "./globals.css";
+import "../styles/globals.css";
+import { Footer } from "@/components/footer";
 import { NavSet } from "@/components/nav/NavSet";
 
 export const metadata = {
@@ -9,9 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className="flex flex-col min-h-screen bg-primary">
+			<body className="flex flex-col min-h-screen bg-back">
 				<NavSet />
-				<main className="flex-grow"> {children} </main>
+				{children}
+				<Footer />
 			</body>
 		</html>
 	);
