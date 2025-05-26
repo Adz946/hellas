@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Clock } from 'lucide-react';
-import { formatDuration } from '@/lib/utils/formatDuration';
-import { ConfirmBtn } from '@/components/bookings/ConfirmBtn';
-import { validateTimeForm } from '@/lib/validation/timeValidator';
-import { InputWithIcon } from '@/components/bookings/InputWithIcon';
+import { useState, useEffect } from "react";
+import { Clock } from "lucide-react";
+import { formatDuration } from "@/lib/utils/formatDuration";
+import { ConfirmBtn } from "@/components/bookings/ConfirmBtn";
+import { validateTimeForm } from "@/lib/validation/timeValidator";
+import { CustomTimePicker } from "@/components/bookings/TimeInput";
 
 export default function SectionTime({ onAdvance }) {
-    const [startTime, setStartTime] = useState('');
+    const [startTime, setStartTime] = useState(null);
     const [modStack, setModStack] = useState([]);
 
     // Load saved data
@@ -35,7 +35,7 @@ export default function SectionTime({ onAdvance }) {
     }, []);
 
     const totalDuration = modStack.reduce((sum, m) => sum + m, 0);
-    const addDuration = (amount) => setModStack(prev => [...prev, amount]);
+    const addDuration = (amount) => setModStack((prev) => [...prev, amount]);
 
     const handleClear = () => {
         sessionStorage.setItem("cleared_mins", JSON.stringify(modStack));
@@ -44,7 +44,7 @@ export default function SectionTime({ onAdvance }) {
 
     const handleUndo = () => {
         if (modStack.length > 0) {
-            setModStack(prev => prev.slice(0, -1));
+            setModStack((prev) => prev.slice(0, -1));
         } else {
             const stored = sessionStorage.getItem("cleared_mins");
             if (stored) {
@@ -62,8 +62,13 @@ export default function SectionTime({ onAdvance }) {
     };
 
     const handleValidate = () => {
-        const hasError = validateTimeForm({ start: startTime, duration: totalDuration });
-        if (!hasError) { onAdvance(); }
+        const hasError = validateTimeForm({
+            start: startTime,
+            duration: totalDuration,
+        });
+        if (!hasError) {
+            onAdvance();
+        }
     };
 
     return (
@@ -71,7 +76,12 @@ export default function SectionTime({ onAdvance }) {
             <h5 className="h5 text-center">Select Start Time</h5>
 
             <div className="w-1/2 flex flex-col gap-3">
-                <InputWithIcon id="start_time" type="time" placeholder="Start Time" icon={Clock} savedInfo={startTime} />
+                <CustomTimePicker
+                    id="start_time"
+                    placeholder="11:00"
+                    value={startTime}
+                    onChange={setStartTime}
+                />
 
                 <div className="w-full my-4 flex flex-col lg:flex-row gap-2 items-center justify-center text-main">
                     <p className="text-main text-lg">Duration</p>
@@ -81,23 +91,56 @@ export default function SectionTime({ onAdvance }) {
                 </div>
 
                 <div className="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 gap-2">
-                    <div className='grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2'>
-                        <button onClick={() => addDuration(15)} className="btn-tr btn-time btn-tr-hover">+ 15min</button>
-                        <button onClick={() => addDuration(30)} className="btn-tr btn-time btn-tr-hover">+ 30min</button>
+                    <div className="grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2">
+                        <button
+                            onClick={() => addDuration(15)}
+                            className="btn-tr btn-time btn-tr-hover"
+                        >
+                            + 15min
+                        </button>
+                        <button
+                            onClick={() => addDuration(30)}
+                            className="btn-tr btn-time btn-tr-hover"
+                        >
+                            + 30min
+                        </button>
                     </div>
 
-                    <div className='grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2'>
-                        <button onClick={() => addDuration(60)} className="btn-tr btn-time btn-tr-hover">+ 1hr</button>
-                        <button onClick={() => addDuration(120)} className="btn-tr btn-time btn-tr-hover">+ 2hr</button>
+                    <div className="grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2">
+                        <button
+                            onClick={() => addDuration(60)}
+                            className="btn-tr btn-time btn-tr-hover"
+                        >
+                            + 1hr
+                        </button>
+                        <button
+                            onClick={() => addDuration(120)}
+                            className="btn-tr btn-time btn-tr-hover"
+                        >
+                            + 2hr
+                        </button>
                     </div>
 
-                    <div className='grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2'>
-                        <button onClick={handleClear} className="btn-tr btn-rem btn-tr-hover">CLEAR</button>
-                        <button onClick={handleUndo} className="btn-tr btn-rem btn-tr-hover">UNDO</button>
+                    <div className="grid grid-cols-2 lg:grid-cols-none lg:grid-rows-2 gap-2">
+                        <button
+                            onClick={handleClear}
+                            className="btn-tr btn-rem btn-tr-hover"
+                        >
+                            CLEAR
+                        </button>
+                        <button
+                            onClick={handleUndo}
+                            className="btn-tr btn-rem btn-tr-hover"
+                        >
+                            UNDO
+                        </button>
                     </div>
                 </div>
-                
-                <p id={`duration_time_error`} className="hidden text-error text-center"></p>
+
+                <p
+                    id={`duration_time_error`}
+                    className="hidden text-error text-center"
+                ></p>
             </div>
 
             <ConfirmBtn section="time" onAdvance={handleValidate} />
