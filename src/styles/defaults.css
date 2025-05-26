@@ -13,12 +13,21 @@ body { overflow-x: hidden; }
 .h6 { @apply text-accent text-lg font-normal leading-snug; }
 .p { @apply text-main text-lg mb-2; }
 
+/* IMAGES */
+.slide { @apply w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl; }
+
 /* BUTTONS */
 .btn { @apply block w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl transition-transform duration-300 ease-out text-center; }
 .btn-hover { @apply hover:scale-110 hover:bg-accent-hover hover:translate-y-1; }
 
+.btn-tr { @apply block w-full py-2 opacity-75 transform transition-transform duration-300 ease-out; }
+.btn-tr-hover { @apply hover:opacity-100 hover:scale-105 hover:font-bold; }
+
+.btn-time { @apply bg-main text-primary rounded-xl ; }
+.btn-rem { @apply bg-surface text-main rounded-lg ; }
+
 /* BOOKING ELEMENTS */
-.sect { @apply w-full lg:w-3/4 flex flex-col items-center justify-center; }
+.sect { @apply w-full p-2 flex flex-col items-center justify-center; }
 .b-menu { @apply hidden lg:flex w-1/4 px-10 py-2 gap-4 bg-back flex-col justify-center border-r-1 border-r-inactive; }
 
 .inp { @apply w-full py-4 px-4 my-2 bg-inactive text-primary rounded-sm focus:bg-active; }

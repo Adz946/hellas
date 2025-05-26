@@ -15,5 +15,5 @@ export function useThemeLogo() {
     return () => { mediaQuery.removeEventListener('change', updateLogo); };
   }, []);
 
-  return logoColor;
+  return logoColor || "WHITE";
 }

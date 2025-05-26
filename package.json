@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@adz946/true-name": "^1.0.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.12.1",
     "hellas": "file:",
     "lucide-react": "^0.510.0",
     "next": "15.3.2",

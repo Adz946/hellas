@@ -97,3 +97,15 @@ export const securityVenues = [
   { id: "vip_events", label: "VIP Events" },
   { id: "popup_events", label: "Pop-up Events / Brand Activations" }
 ];
+
+export const securityRoles = [
+    "Access Control",
+    "Traffic Management",
+    "Restricted Access Control",
+    "Noise Control",
+    "Conflict Management",
+    "Equipment Protection",
+    "Alcohol Monitoring & Compliance",
+    "Guest Verification",
+    "ID Checks"
+];

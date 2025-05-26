@@ -57,25 +57,16 @@ export default function Home() {
 
 			{/* QUOTE */}
 			<div className="w-full text-center bg-surface py-25">
-				<p className="text-4xl text-active">“We Protect As God Protects Us”</p>
+				<p className="text-4xl text-active font-quote">“We Protect As God Protects Us”</p>
 			</div>
 
 			{/* SLIDESHOW */}
 			<div className="flex w-full animate-imageSlideIn">
-				<img src="/images/IMG_A.png" alt="EXAMPLE A" 
-				className="w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl" />
-
-				<img src="/images/IMG_B.png" alt="EXAMPLE B" 
-				className="w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl" />
-
-				<img src="/images/IMG_C.png" alt="EXAMPLE C" 
-				className="w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl" />
-
-				<img src="/images/IMG_D.png" alt="EXAMPLE D" 
-				className="w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl" />
-
-				<img src="/images/IMG_E.png" alt="EXAMPLE E" 
-				className="w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl" />
+				<img src="/images/IMG_A.png" alt="EXAMPLE A" className="slide" />
+				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide" />
+				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide" />
+				<img src="/images/IMG_D.png" alt="EXAMPLE D" className="slide" />
+				<img src="/images/IMG_E.png" alt="EXAMPLE E" className="slide" />			
 			</div>
 
 			{/* BOOK SELECT */}

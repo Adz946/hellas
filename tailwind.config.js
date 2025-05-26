@@ -14,7 +14,10 @@ module.exports = {
             error: 'var(--error)'
         },
         extend: {
-            fontFamily: { sans: ['var(--font-sans)', 'Helvetica', 'Arial', 'sans-serif'] }
+            fontFamily: { 
+                sans: ['var(--font-sans)', 'Helvetica', 'Arial', 'sans-serif'],
+                quote: ['var(--font-quote)', 'serif']
+            }
         }
     },
     plugins: []
