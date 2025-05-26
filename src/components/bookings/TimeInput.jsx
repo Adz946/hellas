@@ -4,7 +4,7 @@ import { Clock, ChevronUp, ChevronDown } from "lucide-react";
 
 export function CustomTimePicker({
     id,
-    value,
+    value = "",
     onChange,
     placeholder = "HH:MM",
 }) {
@@ -46,7 +46,6 @@ export function CustomTimePicker({
 
     // Update displayValue when the main `value` prop changes
     useEffect(() => {
-        alert(`VAL: ${value}`);
         if (value) {
             setDisplayValue(value); // Assuming value is already "HH:MM"
             parseValueToModalState(value);
@@ -56,7 +55,7 @@ export function CustomTimePicker({
             setModalHour(12);
             setModalMinute(0);
         }
-    }, [value, parseValueToModalState]);
+    }, [value]);
 
     // Open modal and sync its internal state with the current value
     const openModal = () => {
