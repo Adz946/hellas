@@ -12,8 +12,16 @@ export default function Home() {
 				<img src="/images/HERO.png" alt="Hero Banner" className="w-full h-auto object-cover" />
 			</div>
 
+			{/* BOOK SELECT */}
+			<div className="w-full text-center flex flex-col items-center py-25">
+				<p className="text-3xl text-active mb-5">Ready to Enhance Your Security?</p>
+				<p className="text-2xl text-inactive mb-5">Contact our team for all your security needs</p>
+
+				<a href="/book" className='btn btn-hover'>Book Now</a>
+			</div>
+
 			{/* INFO [WHY US] */}
-			<div className="w-full flex flex-row">
+			<div className="w-full flex flex-row bg-surface">
 				<div className="w-2/3 flex flex-col text-center justify-center">
 					<h3 className="w-full h3">WHY US</h3>
 					{reasonCategories.map(({id, text}) => { return <TextGroup key={id} text={text} />; })}
@@ -26,7 +34,7 @@ export default function Home() {
 			</div>
 
 			{/* INFO [BENEFITS] */}
-			<div className="w-full flex flex-row bg-surface">
+			<div className="w-full flex flex-row">
 				<div className="relative w-1/3 aspect-[0.80] animate-imageSlideIn">
 					<Image fill src={"/images/IMG_D.png"} alt='Depiction of a guard watching over a party' />
 				</div>
@@ -39,7 +47,7 @@ export default function Home() {
 			</div>
 
 			{/* INFO [SERVICES] */}
-			<div className="w-full flex flex-row">
+			<div className="w-full flex flex-row bg-surface">
 				<div className="w-2/3 flex flex-col text-center justify-center">
 					<h3 className="w-full h3">OUR SERVICES</h3>
 
@@ -56,7 +64,7 @@ export default function Home() {
 			</div>
 
 			{/* QUOTE */}
-			<div className="w-full text-center bg-surface py-25">
+			<div className="w-full text-center py-25">
 				<p className="text-4xl text-active font-quote">“We Protect As God Protects Us”</p>
 			</div>
 
@@ -67,14 +75,6 @@ export default function Home() {
 				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide" />
 				<img src="/images/IMG_D.png" alt="EXAMPLE D" className="slide" />
 				<img src="/images/IMG_E.png" alt="EXAMPLE E" className="slide" />			
-			</div>
-
-			{/* BOOK SELECT */}
-			<div className="w-full text-center flex flex-col items-center py-25">
-				<p className="text-3xl text-active mb-5">Ready to Enhance Your Security?</p>
-				<p className="text-2xl text-inactive mb-5">Contact our team for all your security needs</p>
-
-				<a href="/book" className='btn btn-hover'>Book Now</a>
 			</div>
 		</main>
 	)

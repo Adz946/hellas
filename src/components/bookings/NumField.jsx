@@ -14,7 +14,7 @@ export function NumField({ id, label, max = 50000, min = 1, value, onChange }) {
     return (
         <div className="w-2/4 p-2 flex flex-col items-center">
             <input id={id} type="number" value={value ?? ""} onChange={handleChange} onBlur={handleBlur} inputMode="numeric" 
-                pattern="[0-9]*" max={max} min={min} className="text-center text-2xl text-primary bg-inactive rounded-md w-full" />
+                pattern="[0-9]*" placeholder={min} className="text-center text-2xl text-primary bg-inactive rounded-md w-full" />
 
             <hr className="w-full border-t border-inactive my-1" />
             <label htmlFor={id} className="text-md text-inactive">{label}</label>

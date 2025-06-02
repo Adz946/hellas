@@ -13,6 +13,15 @@ export default function Calendar({ selectedDate, onSelect }) {
         }
     }, [selectedDate]);
 
+    useEffect(() => {
+        const today = new Date();
+        const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        
+        if (today.getDate() === lastDayOfMonth.getDate()) {
+            setCurrentDate(new Date(today.getFullYear(), today.getMonth() + 1, 1));
+        }
+    }, []);
+
     const startDate = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 }); // Monday start
 
     const generateCalendarDays = () => {
@@ -73,7 +82,7 @@ export default function Calendar({ selectedDate, onSelect }) {
                         {days.map((day, idx) => {
                             const isCurrentMonth = isSameMonth(day, currentDate);
                             const isSelected = isSameDay(day, selectedDate);
-                            const isPast = day < new Date(new Date().setHours(0, 0, 0, 0));
+                            const isPast = day <= new Date(new Date().setHours(0, 0, 0, 0));
                             const isDisabled = !isCurrentMonth || isPast;
 
                             return (
@@ -84,7 +93,7 @@ export default function Calendar({ selectedDate, onSelect }) {
                                     className={`
                                         py-1 rounded-full w-8 h-8 mx-auto
                                         ${isSelected ? 'text-accent font-semibold' : 'text-inactive'}
-                                        ${isDisabled ? 'opacity-30 cursor-not-allowed' : 'hover:text-accent'}
+                                        ${isDisabled ? 'opacity-30 cursor-not-allowed' : 'hover:text-accent cursor-pointer'}
                                     `}
                                 >
                                     {format(day, 'd')}
