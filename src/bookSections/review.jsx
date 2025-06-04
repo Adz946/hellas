@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { securityVenues } from "@/lib/serviceList";
 import { getFromStorage } from "@/lib/utils/bookStorage";
-import { formatDuration } from "@/lib/utils/formatDuration";
 import { ReviewItem } from "@/components/bookings/ReviewItem";
+import { formatDuration, formatDate } from "@/lib/utils/formatDuration";
 import { User, Mail, Phone, Shield, Users, Badge, CakeSlice, Wine, Calendar, Clock, Hourglass, MapPin } from "lucide-react";
 
 export default function SectionReview() {
@@ -58,7 +58,7 @@ export default function SectionReview() {
 
             <h5 className="h5">Date / Time</h5>
             <div className="w-full px-2 mb-6 gap-2 flex flex-col lg:flex-row justify-center items-center">
-                <ReviewItem content={dateData.date} label={"Date"} icon={Calendar} width={"w-1/3"} />
+                <ReviewItem content={formatDate(dateData.date)} label={"Date"} icon={Calendar} width={"w-1/3"} />
                 <ReviewItem content={timeData.start} label={"Start Time"} icon={Clock} width={"w-1/3"} />
                 <ReviewItem content={formatDuration(timeData.duration)} label={"Duration"} icon={Hourglass} width={"w-1/3"} />
             </div>
@@ -72,9 +72,10 @@ export default function SectionReview() {
             <div className="w-full px-2 mb-6 gap-4 flex flex-col justify-center items-center">
                 <ReviewItem content={getServiceLabel(contactData.service)} label={"Service"} icon={Shield} width={"w-3/4"} />
 
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {eventData.securityRoles.map(role => (
-                        <span className="w-full py-2 bg-surface text-main text-md text-center rounded-xl">{role}</span>
+                <div className="w-full flex flex-wrap justify-center gap-4">
+                    {eventData.securityRoles.map((role, index) => (
+                        <span key={index} className="w-full md:w-80 py-2 bg-surface text-main text-md text-center rounded-xl">
+                            {role}</span>
                     ))}
                 </div>
             </div>

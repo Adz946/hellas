@@ -22,7 +22,7 @@ export default function SectionEvent({ onAdvance }) {
             if (savedData.guard) { setGuard(savedData.guard); }
             if (savedData.audience) { setAudience(savedData.audience); }
 
-            if (savedData.audience === "under") { setAlcohol("no"); } 
+            if (savedData.audience === "under 18") { setAlcohol("no"); } 
             else if (savedData.alcohol) { setAlcohol(savedData.alcohol); }
 
             if (savedData.securityRoles) { setRoles(savedData.securityRoles); }
@@ -31,7 +31,7 @@ export default function SectionEvent({ onAdvance }) {
 
     const handleAudienceSelect = (group) => {
         setAudience(group);
-        if (group === "under") { setAlcohol("no"); } 
+        if (group === "under 18") { setAlcohol("no"); } 
         else { setAlcohol(null); }
     };  
 

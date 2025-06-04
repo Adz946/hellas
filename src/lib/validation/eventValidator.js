@@ -19,7 +19,7 @@ export function validateEventForm({ guest, guard, audience, alcohol, securityRol
         hasError = true;
     }
 
-    if (audience === "over" && (alcohol !== "yes" && alcohol !== "no")) {
+    if (audience === "over 18" && (alcohol !== "yes" && alcohol !== "no")) {
         setErrorMsg("alcohol_toggle", "Specify alcohol presence");
         hasError = true;
     }

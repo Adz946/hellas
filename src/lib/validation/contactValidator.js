@@ -18,7 +18,7 @@ export function validateContactForm({ name, email, mobile, service }) {
         hasError = true;
     }
 
-    if (!/^\+614\d{8}$/.test(normalizedMobile)) {
+    if (!/^\+614\d{8}$/.test(normalizedMobile.replace(/\s/g, '')))  {
         setErrorMsg('contact_mobile', 'Enter a valid Australian mobile number');
         hasError = true;
     }
