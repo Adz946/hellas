@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { securityVenues } from "@/lib/serviceList";
+import { getFromStorage } from '@/lib/utils/bookStorage';
 import { ConfirmBtn } from "@/components/bookings/ConfirmBtn";
 import { User, Mail, Phone, ChevronDown } from "lucide-react";
 import { InputWithIcon } from "@/components/bookings/InputWithIcon";
@@ -7,42 +8,40 @@ import { validateContactForm } from "@/lib/validation/contactValidator";
 
 export default function SectionContact({ onAdvance }) {
     const [savedData, setSavedData] = useState(null);
+    useEffect(() => { setSavedData(getFromStorage("contact")); }, []);
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [service, setService] = useState("");
 
     useEffect(() => {
-        const stored = sessionStorage.getItem("contact_data");
-        if (stored) {
-            try {
-                const [data] = JSON.parse(stored); 
-                setSavedData(data);
-            } catch (err) { console.warn("Invalid contact_data in sessionStorage:", err); }
-        }
-    }, []);
-
-    useEffect(() => {
-        if (savedData?.service) {
-            const select = document.getElementById("contact_service");
-            if (select) select.value = savedData.service;
+        if (savedData) {
+            if (savedData.name) { setName(savedData.name); }
+            if (savedData.email) { setEmail(savedData.email); }
+            if (savedData.mobile) { setMobile(savedData.mobile); }
+            if (savedData.service) { setService(savedData.service); }
         }
     }, [savedData]);
 
     const handleValidate = () => {
-        const hasError = validateContactForm();
-        console.log(`Error Status: ${hasError}`);
+        const hasError = validateContactForm({ name, email, mobile, service });
         if (!hasError) { onAdvance(); }
     };
 
     return (
         <section className="sect">
             <div className="w-1/2 p-2 gap-4 flex flex-col justify-center">
-                <InputWithIcon id="contact_name" placeholder="Name or Company" 
-                    icon={User} savedInfo={savedData?.name} />
+                <InputWithIcon id="contact_name" placeholder="Full Name or Company" 
+                    icon={User} savedInfo={name} onChange={setName} />
                 <InputWithIcon id="contact_email" type="email" placeholder="Contact Email" 
-                    icon={Mail} savedInfo={savedData?.email} />
+                    icon={Mail} savedInfo={email} onChange={setEmail} />
                 <InputWithIcon id="contact_mobile" type="tel" placeholder="Contact Number [+61 or 04]"  
-                    icon={Phone} savedInfo={savedData?.mobile} />
+                    icon={Phone} savedInfo={mobile} onChange={setMobile} />
 
                 <div className="relative w-full">
-                    <select id="contact_service" className="slc pr-10">
+                    <select id="contact_service" className="slc pr-10"  value={service || ""} 
+                        onChange={(e) => setService(e.target.value)}>
                         <option value="">Select a service</option>
                         {securityVenues.map(({ id, label }) => ( <option key={id} value={id}>{label}</option> ))}
                     </select>

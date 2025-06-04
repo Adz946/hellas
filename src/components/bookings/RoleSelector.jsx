@@ -47,7 +47,7 @@ export function RoleSelector({ selected, onChange }) {
                 ))}
 
                 <button onClick={openSelector} className={`w-full px-4 py-2 bg-inactive text-primary rounded-xl text-sm flex 
-                    justify-between items-center ${isLastRowOdd ? "md:col-span-2" : ""}`}>
+                    justify-between items-center btn-scale ${isLastRowOdd ? "md:col-span-2" : ""}`}>
                     <span>Select Role</span> <PlusCircle className="w-4 h-4 opacity-70 hover:opacity-100" /> 
                 </button>
             </div>

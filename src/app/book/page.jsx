@@ -7,6 +7,8 @@ import SectionContact from '@/bookSections/contact';
 import SectionEvent from '@/bookSections/event';
 import SectionDate from '@/bookSections/date';
 import SectionTime from '@/bookSections/time';
+import SectionLocation from '@/bookSections/location';
+import SectionReview from '@/bookSections/review';
 
 export default function Book() {
     const { activeSection, sectionStates, goToSection, advanceFlow } = useBookingFlow();
@@ -22,6 +24,10 @@ export default function Book() {
                     return <SectionDate onAdvance={() => advanceFlow('date')} />;
                 case 'time':
                     return <SectionTime onAdvance={() => advanceFlow('time')} />;
+                case 'location':
+                    return <SectionLocation onAdvance={() => advanceFlow("location") } />;
+                case 'review':
+                    return <SectionReview />;
                 default:
                     return <div className="p-4">Not yet implemented.</div>;
             }

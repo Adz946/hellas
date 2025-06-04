@@ -17,7 +17,7 @@ export default function Home() {
 				<p className="text-3xl text-active mb-5">Ready to Enhance Your Security?</p>
 				<p className="text-2xl text-inactive mb-5">Contact our team for all your security needs</p>
 
-				<a href="/book" className='btn btn-hover'>Book Now</a>
+				<a href="/book" className='btn btn-hover btn-scale'>Book Now</a>
 			</div>
 
 			{/* INFO [WHY US] */}

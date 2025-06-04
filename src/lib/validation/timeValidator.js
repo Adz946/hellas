@@ -1,36 +1,19 @@
-function showError(id, message) {
-    const error = document.getElementById(`${id}_error`);
-    if (error) {
-        error.textContent = message;
-        error.classList.remove('hidden');
-    }
-}
-
-function clearError(id) {
-    const error = document.getElementById(`${id}_error`);
-    if (error) {
-        error.textContent = '';
-        error.classList.add('hidden');
-    }
-}
+import { setToStorage, clearErrorMsg, setErrorMsg } from '../utils/bookStorage';
 
 export function validateTimeForm({ start, duration }) {
     let hasError = false;
-    ['start_time', 'duration_time'].forEach(clearError);
+    ['start_time', 'duration_time'].forEach(clearErrorMsg);
 
-    if (!start) {
-        showError("start_time", "Please select a start time");
+    if (!/^(0?[1-9]|1[0-2]):([0-5][0-9]) (AM|PM)$/.test(start.trim())) {
+        setErrorMsg("start_time", "Please select a start time");
         hasError = true;
     }
 
     if (duration < 180) {
-        showError('duration_time', "Minimum duration is 3 hours");
+        setErrorMsg('duration_time', "Minimum duration is 3 hours");
         hasError = true;
     }
 
-    if (!hasError) {
-        sessionStorage.setItem("time_data", JSON.stringify([{ start, duration }]));
-    }
-
+    if (!hasError) { setToStorage("time", { start, duration }); }
     return hasError;
 }

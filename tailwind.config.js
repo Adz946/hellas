@@ -17,6 +17,9 @@ module.exports = {
             fontFamily: { 
                 sans: ['var(--font-sans)', 'Helvetica', 'Arial', 'sans-serif'],
                 quote: ['var(--font-quote)', 'serif']
+            },
+            backgroundImage: {
+                'gradient-primary': 'linear-gradient(220deg, var(--back), var(--primary), var(--back))',
             }
         }
     },

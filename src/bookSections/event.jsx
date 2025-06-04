@@ -1,5 +1,5 @@
-"use client";
 import { useState, useEffect } from 'react';
+import { getFromStorage } from '@/lib/utils/bookStorage';
 import { NumField } from '@/components/bookings/NumField';
 import { ConfirmBtn } from "@/components/bookings/ConfirmBtn";
 import { ToggleGroup } from '@/components/bookings/ToggleGroup';
@@ -8,27 +8,13 @@ import { validateEventForm } from '@/lib/validation/eventValidator';
 
 export default function SectionEvent({ onAdvance }) {
     const [savedData, setSavedData] = useState(null);
+    useEffect(() => { setSavedData(getFromStorage("event")); }, []);
+
     const [guest, setGuest] = useState(null);
     const [guard, setGuard] = useState(null);
     const [audience, setAudience] = useState(null); 
     const [alcohol, setAlcohol] = useState(null);
     const [securityRoles, setRoles] = useState([]);
-
-    const handleAudienceSelect = (group) => {
-        setAudience(group);
-        if (group === "under") { setAlcohol("no"); } 
-        else { setAlcohol(null); }
-    };  
-
-    useEffect(() => {
-        const stored = sessionStorage.getItem("event_data");
-        if (stored) {
-            try {
-                const [data] = JSON.parse(stored);
-                setSavedData(data);
-            } catch (err) { console.warn("Invalid event_data in sessionStorage:", err); }
-        }
-    }, []);
 
     useEffect(() => {
         if (savedData) {
@@ -42,6 +28,12 @@ export default function SectionEvent({ onAdvance }) {
             if (savedData.securityRoles) { setRoles(savedData.securityRoles); }
         }
     }, [savedData]);
+
+    const handleAudienceSelect = (group) => {
+        setAudience(group);
+        if (group === "under") { setAlcohol("no"); } 
+        else { setAlcohol(null); }
+    };  
 
     const handleValidate = () => {
         const hasError = validateEventForm({ guest, guard, audience, alcohol, securityRoles });
@@ -59,9 +51,9 @@ export default function SectionEvent({ onAdvance }) {
 
                 <div className="w-full p-2 flex flex-row justify-center">
                     <ToggleGroup id="audience_toggle" title="Audience Group" selected={audience} onSelect={handleAudienceSelect}
-                        options={[ { id: "under", label: "- 18" }, { id: "over", label: "+ 18" }, ]} />
+                        options={[ { id: "under 18", label: "- 18" }, { id: "over 18", label: "+ 18" }, ]} />
 
-                    {audience === "under" ? (
+                    {audience === "under 18" ? (
                         <div className="w-1/2 gap-3 flex flex-col text-center items-center">
                             <h5 className="h5 w-full">Alcohol Presence</h5>
                             <p className="text-center text-sm text-primary w-3/4 bg-inactive rounded-xl p-2">

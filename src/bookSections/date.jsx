@@ -1,56 +1,31 @@
-'use client';
 import { useState, useEffect } from 'react';
 import Calendar from '@/components/bookings/Calendar';
+import { getFromStorage } from '@/lib/utils/bookStorage';
 import { ConfirmBtn } from "@/components/bookings/ConfirmBtn";
+import { validateDateForm } from '@/lib/validation/dateValidator';
 
 export default function SectionDate({ onAdvance }) {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [savedData, setSavedData] = useState(null);
+    useEffect(() => { setSavedData(getFromStorage("date")); }, []);
+
+    const [date, setDate] = useState(null);
 
     useEffect(() => {
-        const stored = sessionStorage.getItem("dt_data");
-        if (stored) {
-            try {
-                const [data] = JSON.parse(stored);
-                if (data?.date) { setSelectedDate(new Date(data.date)); }
-            } catch (err) {
-                console.warn("Invalid dt_data in sessionStorage:", err);
-            }
+        if (savedData) {
+            if (savedData.date) { setDate(new Date(savedData.date)); }
         }
-    }, []);
-
-    function showError() {
-        const error = document.getElementById(`date_error`);
-        if (error) {
-            error.textContent = "Please select a date";
-            error.classList.remove('hidden');
-        }
-    }
-
-    function clearError() {
-        const error = document.getElementById(`date_error`);
-        if (error) {
-            error.textContent = '';
-            error.classList.add('hidden');
-        }
-    }
+    }, [savedData]);
 
     const handleValidate = () => {
-        clearError();
-
-        if (!selectedDate) {
-            showError();
-            return;
-        }
-
-        sessionStorage.setItem("dt_data", JSON.stringify([{ date: selectedDate.toISOString().split("T")[0] }]));
-        onAdvance();
+        const hasError = validateDateForm({ date });
+        if (!hasError) { onAdvance(); }
     };
 
     return (
-        <section className="sect flex flex-col items-center justify-center gap-6">
+        <section className="sect">
             <h5 className="h5 text-center">Select Your Event Date</h5>
             <div className='w-full mb-4 flex flex-col items-center'>
-                <Calendar selectedDate={selectedDate} onSelect={setSelectedDate} />
+                <Calendar selectedDate={date} onSelect={setDate} />
                 <p id={`date_error`} className="hidden text-error text-center"></p>
             </div>
             <ConfirmBtn section="dt" onAdvance={handleValidate} />

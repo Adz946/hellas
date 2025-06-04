@@ -9,7 +9,7 @@ body { overflow-x: hidden; }
 .h2 { @apply text-accent text-4xl font-semibold leading-snug mb-4; }
 .h3 { @apply text-accent text-3xl font-semibold leading-snug mb-3; }
 .h4 { @apply text-accent text-2xl font-medium leading-normal mb-2; }
-.h5 { @apply text-accent text-xl font-medium leading-normal mb-1; }
+.h5 { @apply text-accent text-xl font-medium leading-normal; }
 .h6 { @apply text-accent text-lg font-normal leading-snug; }
 .p { @apply text-main text-lg mb-2; }
 
@@ -17,8 +17,9 @@ body { overflow-x: hidden; }
 .slide { @apply w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl; }
 
 /* BUTTONS */
-.btn { @apply block w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl transition-transform duration-300 ease-out text-center; }
+.btn { @apply block w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl text-center; }
 .btn-hover { @apply hover:scale-110 hover:bg-accent-hover hover:translate-y-1; }
+.btn-scale { @apply transition-transform duration-300 ease-out hover:scale-115 }
 
 .btn-tr { @apply block w-full py-2 opacity-75 transform transition-transform duration-300 ease-out; }
 .btn-tr-hover { @apply hover:opacity-100 hover:scale-105 hover:font-bold; }
@@ -27,8 +28,8 @@ body { overflow-x: hidden; }
 .btn-rem { @apply bg-surface text-main rounded-lg ; }
 
 /* BOOKING ELEMENTS */
-.sect { @apply w-full p-2 flex flex-col items-center justify-center; }
-.b-menu { @apply hidden lg:flex w-1/4 px-10 py-2 gap-4 bg-back flex-col justify-center border-r-1 border-r-inactive; }
+.sect { @apply w-full h-full px-2 py-6 flex flex-col items-center justify-center gap-6; }
+.b-menu { @apply hidden lg:flex w-1/4 px-10 pt-5 gap-4 bg-gradient-primary flex-col border-r-1 border-r-inactive; }
 
 .inp { @apply w-full py-4 px-4 my-2 bg-inactive text-primary rounded-sm focus:bg-active; }
 .slc { @apply w-full py-4 px-4 my-2 bg-surface text-main rounded-lg focus:bg-main focus:text-primary appearance-none; }
