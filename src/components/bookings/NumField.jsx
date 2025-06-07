@@ -12,7 +12,7 @@ export function NumField({ id, label, max = 50000, min = 1, value, onChange }) {
     };
 
     return (
-        <div className="w-2/4 p-2 flex flex-col items-center">
+        <div className="w-full lg:w-1/2 p-2 flex flex-col items-center">
             <input id={id} type="number" value={value ?? ""} onChange={handleChange} onBlur={handleBlur} inputMode="numeric" 
                 pattern="[0-9]*" placeholder={min} className="text-center text-2xl text-primary bg-inactive rounded-md w-full" />
 

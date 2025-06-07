@@ -41,7 +41,7 @@ export function RoleSelector({ selected, onChange }) {
                     <button key={role} onClick={() => removeSelected(role)}
                         className="w-full px-4 py-2 bg-surface text-main rounded-xl text-sm flex justify-between items-center"
                     >
-                        <span>{role}</span>
+                        <span className="text-left">{role}</span>
                         <MinusCircle className="w-4 h-4 opacity-70 hover:opacity-100" />
                     </button>
                 ))}

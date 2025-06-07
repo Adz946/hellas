@@ -1,14 +1,7 @@
-export function ReviewItem({ content, label, icon: Icon, width }) {
-    const widthClasses = {
-        'w-1/4': 'w-full lg:w-1/4',
-        'w-1/3': 'w-full lg:w-1/3',
-        'w-3/4': 'w-full lg:w-3/4',
-        'w-full': 'w-full'
-    };
-
+export function ReviewItem({ content, label, icon: Icon }) {
     return (
-        <div className={`${widthClasses[width]} px-4 py-2 flex flex-col items-center`}>
-            <p className="px-2 text-main text-center text-lg">{content}</p>
+        <div className={`w-full px-4 py-2 flex flex-col items-center`}>
+            <p className="px-2 text-main text-center text-md">{content}</p>
             <hr className="w-full border-t border-inactive my-1" />
 
             <div className="relative w-full justify-center pt-1">

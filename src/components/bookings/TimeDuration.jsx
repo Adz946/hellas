@@ -47,7 +47,7 @@ export function TimeDuration({ initialStack, onChange }) {
 
     return (
         <div className="flex flex-col gap-3">
-            <div className="w-full my-4 flex flex-col lg:flex-row gap-2 items-center justify-center">
+            <div className="w-full my-4 flex flex-col sm:flex-row gap-2 items-center justify-center">
                 <p className="text-main text-lg">Duration</p>
                 <p className="bg-surface text-main px-4 py-2 rounded-md text-sm text-center">
                     {formatDuration(totalDuration)}

@@ -51,5 +51,5 @@ export function MapWithMarker({ coordinates, onLocationChange }) {
         }
     }, [coordinates]);
 
-    return <div ref={mapContainerRef} className="w-2/3" style={{ height: "50vh" }} />;
+    return <div ref={mapContainerRef} className="w-full" style={{ height: "50vh" }} />;
 }

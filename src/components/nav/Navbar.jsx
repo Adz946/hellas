@@ -15,12 +15,6 @@ export function Navbar() {
                 <a href="/" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125 
                     hover:text-main ${pathname === "/" ? "text-main" : "text-inactive scale-90"}`}>Home</a>
 
-                <a href="/services" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125
-                    hover:text-main ${pathname === "/services" ? "text-main" : "text-inactive scale-90"}`}>Services</a>
-
-                <a href="/contact" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125
-                    hover:text-main ${pathname === "/contact" ? "text-main" : "text-inactive scale-90"}`}>Contact</a>
-
                 <a href="/book" className={`text-accent text-xl font-semibold transform transition-transform duration-500 
                 ease-out hover:scale-115 ${pathname !== "/book" ? "opacity-75 hover:opacity-100" : null}`}>Book Now</a>
             </div>

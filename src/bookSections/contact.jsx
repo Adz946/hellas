@@ -31,7 +31,7 @@ export default function SectionContact({ onAdvance }) {
 
     return (
         <section className="sect">
-            <div className="w-1/2 p-2 gap-4 flex flex-col justify-center">
+            <div className="w-full lg:w-1/2 p-2 gap-4 flex flex-col justify-center">
                 <InputWithIcon id="contact_name" placeholder="Full Name or Company" 
                     icon={User} savedInfo={name} onChange={setName} />
                 <InputWithIcon id="contact_email" type="email" placeholder="Contact Email" 

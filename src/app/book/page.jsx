@@ -1,50 +1,39 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
-
-import { useBookingFlow } from './BookManager';
-import BookMenu from '@/bookSections/menu';
-import SectionContact from '@/bookSections/contact'; 
-import SectionEvent from '@/bookSections/event';
-import SectionDate from '@/bookSections/date';
-import SectionTime from '@/bookSections/time';
-import SectionLocation from '@/bookSections/location';
-import SectionReview from '@/bookSections/review';
+import { useState, useEffect } from "react";
+import { useBookingFlow } from "./BookManager";
+import Sidebar from "@/bookSections/sidebar";
+import Accordion from "@/bookSections/accordion";
+import { BookMover } from "@/lib/utils/bookMover";
+import { SectionComponents } from "@/lib/utils/bookSections";
 
 export default function Book() {
-    const { activeSection, sectionStates, goToSection, advanceFlow } = useBookingFlow();
+    const [isMobile, setIsMobile] = useState(false);
+    
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
-    const renderSection = () => {
-        const SectionComponent = (() => {
-            switch (activeSection) {
-                case 'contact':
-                    return <SectionContact onAdvance={() => advanceFlow('contact')} />;
-                case 'event':
-                    return <SectionEvent onAdvance={() => advanceFlow('event')} />;
-                case 'date':
-                    return <SectionDate onAdvance={() => advanceFlow('date')} />;
-                case 'time':
-                    return <SectionTime onAdvance={() => advanceFlow('time')} />;
-                case 'location':
-                    return <SectionLocation onAdvance={() => advanceFlow("location") } />;
-                case 'review':
-                    return <SectionReview />;
-                default:
-                    return <div className="p-4">Not yet implemented.</div>;
-            }
-        })();
-
-        return (
-            <motion.div key={activeSection} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.5 }} className="w-full">
-                {SectionComponent}
-            </motion.div>
-        );
-    };
+    const { activeSection, sectionStates, goToSection, advanceFlow, } = useBookingFlow();
 
     return (
-        <main className="flex-grow bg-primary text-main flex flex-row">
-            <BookMenu activeSection={activeSection} setActiveSection={goToSection} sectionStates={sectionStates} />
-            <AnimatePresence mode="wait"> {renderSection()} </AnimatePresence>
+        <main className="flex-grow bg-primary text-main">
+            {isMobile ? (
+                <div className="flex flex-col">
+                    <Accordion activeSection={activeSection} sectionStates={sectionStates} goToSection={goToSection} 
+                        advanceFlow={advanceFlow} />
+                </div>
+            ) : (
+                <div className="flex flex-row">
+                    <Sidebar activeSection={activeSection} sectionStates={sectionStates} goToSection={goToSection} />
+                    <div className="flex-grow">
+                        <BookMover section={SectionComponents[activeSection]} activeSection={activeSection}
+                            onAdvance={() => advanceFlow(activeSection)} />
+                    </div>
+                </div>
+            )}
         </main>
     );
 }

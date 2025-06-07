@@ -42,19 +42,19 @@ export default function SectionEvent({ onAdvance }) {
 
     return (
         <section className="sect">
-            <div className="w-1/2 p-2 gap-4 flex flex-col justify-center">
+            <div className="w-full lg:w-1/2 p-2 gap-4 flex flex-col justify-center">
                 <h5 className="h5 text-center">Guests & Guards</h5>
-                <div className="w-full flex flex-row justify-center">
+                <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                     <NumField id="guest_count" label="Guest Count" value={guest} onChange={setGuest} />
                     <NumField id="guard_count" label="Guard Count" max={15} min={2} value={guard} onChange={setGuard} />
                 </div>
 
-                <div className="w-full p-2 flex flex-row justify-center">
+                <div className="w-full gap-4 p-2 flex flex-col lg:flex-row items-center justify-center">
                     <ToggleGroup id="audience_toggle" title="Audience Group" selected={audience} onSelect={handleAudienceSelect}
                         options={[ { id: "under 18", label: "- 18" }, { id: "over 18", label: "+ 18" }, ]} />
 
                     {audience === "under 18" ? (
-                        <div className="w-1/2 gap-3 flex flex-col text-center items-center">
+                        <div className="w-full lg:w-1/2 gap-3 flex flex-col text-center items-center">
                             <h5 className="h5 w-full">Alcohol Presence</h5>
                             <p className="text-center text-sm text-primary w-3/4 bg-inactive rounded-xl p-2">
                                 ⚠️ For this age group, alcohol service is automatically disabled in line with current event regulations.
