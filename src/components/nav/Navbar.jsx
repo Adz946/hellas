@@ -1,9 +1,9 @@
 'use client';
 import React from "react";
+import { Info } from "lucide-react";
 import { NavShape } from "./NavShape";
 import { IconShape } from "./IconShape";
 import { usePathname } from "next/navigation";
-import { MessagesSquare } from "lucide-react";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -11,7 +11,7 @@ export function Navbar() {
     return (
         <nav className="w-full h-full flex flex-col">
 
-            <div className="w-full h-1/2 flex items-center justify-end gap-15 px-5">
+            <div className="w-full h-1/2 flex items-center justify-end gap-5 px-5">
                 <a href="/" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125 
                     hover:text-main ${pathname === "/" ? "text-main" : "text-inactive scale-90"}`}>Home</a>
 
@@ -32,8 +32,8 @@ export function Navbar() {
                     <div className="relative flex items-center justify-center h-full aspect-square"> 
                         <IconShape /> 
                         
-                        <MessagesSquare className="h-[2em] w-[2em] stroke-none fill-surface absolute z-10 
-                            transition-transform duration-300 hover:scale-110 hover:fill-primary" />
+                        <Info className="h-[2em] w-[2em] stroke-surface absolute z-10 transition-transform duration-300 
+                            hover:scale-110 hover:stroke-primary" />
                     </div>
                 </div>
             </div>

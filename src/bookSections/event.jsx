@@ -42,7 +42,7 @@ export default function SectionEvent({ onAdvance }) {
 
     return (
         <section className="sect">
-            <div className="w-full lg:w-1/2 p-2 gap-4 flex flex-col justify-center">
+            <div className="w-full xl:w-1/2 p-2 gap-4 flex flex-col justify-center">
                 <h5 className="h5 text-center">Guests & Guards</h5>
                 <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                     <NumField id="guest_count" label="Guest Count" value={guest} onChange={setGuest} />

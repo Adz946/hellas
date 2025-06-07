@@ -7,40 +7,22 @@
   --font-sans: 'Roboto', Helvetica, Arial, sans-serif;
 
   /* Backgrounds */
-  --back: #FFF;
-  --primary: #F4F5F7; 
-  --surface: #E5E7EB;  
+  --back: #000;
+  --primary: #12161F;
+  --surface: #1F2937; 
 
   /* Text and States */
-  --main: #1D2636;      
-  --active: #111111;         
-  --inactive: #727A8A; 
+  --main: #E2E2E9;
+  --active: #FFFFFF;
+  --inactive: #9CA3AF;
 
   /* Buttons and Accents */
   --accent: #D4AF37;       
   --accent-hover: #B8962F;  
 
   /* Status Colors */
-  --success: #008824;
-  --error: #D14343;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Backgrounds */
-    --back: #000;
-    --primary: #12161F;
-    --surface: #1F2937;
-
-    /* Text and States */
-    --main: #E2E2E9;
-    --active: #FFFFFF;
-    --inactive: #9CA3AF;
-
-    /* Status Colors */
-    --success: #00B33C;
-    --error: #F87171;
-  }
+  --success: #00B33C;
+  --error: #F87171;
 }
 
 /* SCROLLBAR */

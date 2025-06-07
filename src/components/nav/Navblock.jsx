@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail, Phone } from "lucide-react";
 import { MobileShape } from "./MobileShape";
 import { usePathname } from "next/navigation";
 
@@ -22,16 +22,28 @@ export function Navblock() {
 
             {/* Mobile menu overlay */}
             {isOpen && (
-                <div className="fixed inset-0 bg-primary/95 backdrop-blur-sm z-40 flex flex-col items-center justify-center">
+                <div className="fixed h-full inset-0 bg-primary/90 backdrop-blur-sm z-40 flex flex-col items-center justify-center">
                     <div className="flex flex-col items-center gap-8">
-                        <a href="/"  onClick={() => setIsOpen(false)} className={`text-2xl font-semibold transform 
-                            transition-all duration-500 ease-out hover:scale-125 hover:text-accent 
-                            ${pathname === "/" ? "text-accent" : "text-main"}`} > Home </a>
+                        <a href="/"  onClick={() => setIsOpen(false)} className={`text-main text-2xl font-semibold opacity-50
+                            ${pathname === "/" ? "opacity-100" : ""}`} > Home </a>
 
-                        <a href="/book" onClick={() => setIsOpen(false)} className={`text-3xl font-bold transform 
-                            transition-all duration-500 ease-out hover:scale-125  text-accent 
-                            ${pathname !== "/book" ? "opacity-75 hover:opacity-100" : ""}`} > Book Now </a>
+                        <a href="/book" onClick={() => setIsOpen(false)} className={`text-accent text-3xl font-bold opacity-50
+                            ${pathname === "/book" ? "opacity-100" : ""}`} > Book Now </a>
+
+                        <div className="w-full gap-4 flex flex-col text-main">
+                            <span className="w-full gap-4 px-4 py-2 flex flex-row items-center bg-surface rounded-lg">
+                                <Mail className="h-full aspect-square" />
+                                <p> hellasscrt@gmail.com </p>
+                            </span>
+
+                            <span className="w-full gap-4 px-4 py-2 flex flex-row items-center bg-surface rounded-lg">
+                                <Phone className="h-full aspect-square" />
+                                <p> 0466 309 744 </p>
+                            </span>
+                        </div>
                     </div>
+
+                    
                 </div>
             )}
         </nav>

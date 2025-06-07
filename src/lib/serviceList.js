@@ -1,76 +1,24 @@
 export const reasonCategories = [
-    {
-        id: "text_1",
-        text: "Services tailored to your need"
-    },
-    {
-        id: "text_2",
-        text: "Experienced and reliable"
-    },
-    {
-        id: "text_3",
-        text: "Assured piece of mind"
-    },
-    {
-        id: "text_4",
-        text: "Value for money"
-    }
+    "Services tailored to your need",
+    "Experienced and reliable",
+    "Assured piece of mind",
+    "Value for money"
 ]
 
 export const benefitCategories = [
-    {
-        id: "row_1",
-        b1: "Monitoring",
-        b2: "Surveillance"
-    },
-    {
-        id: "row_2",
-        b1: "Peice of Mind",
-        b2: "Crime Prevention"
-    },
-    {
-        id: "row_3",
-        b1: "Peacemakers",
-        b2: "Conflict Resolution"
-    },
-    {
-        id: "row_4",
-        b1: "Crowd Control",
-        b2: "Improved Safety"
-    }
+    ["Monitoring","Surveillance"],
+    ["Peice of Mind","Crime Prevention"],
+    ["Peacemakers","Conflict Resolution"],
+    ["Crowd Control","Improved Safety"]
 ]
 
 export const serviceCategories = [
-    {
-        id: 'venues',
-        labels: ['Venues', 'Functions'], 
-        icon: '🥂'
-    },
-    {
-        id: 'events',
-        labels: ['Corporate Events', 'Sporting Events'],
-        icon: '📋'
-    },
-    {
-        id: 'security',
-        labels: ['Static Posts', 'Bodyguard Services'],
-        icon: '🛡️'
-    },
-    {
-        id: 'retail',
-        labels: ['Retail Security', 'Shopping Centers'],
-        icon: '🛍️'
-    },
-    {
-        id: 'parties',
-        labels: ['Birthday Parties', 'Social Gatherings'],
-        icon: '🎉'
-    },
-    {
-        id: 'construction',
-        labels: ['Construction Security', 'Site Patrols'],
-        icon: '🚧'
-    }
+    { labels: ['Venues', 'Functions'], icon: '🥂' },
+    { labels: ['Corporate Events', 'Sporting Events'], icon: '📋' },
+    { labels: ['Static Posts', 'Bodyguard Services'], icon: '🛡️' },
+    { labels: ['Retail Security', 'Shopping Centers'], icon: '🛍️' },
+    { labels: ['Birthday Parties', 'Social Gatherings'], icon: '🎉' },
+    { labels: ['Construction Security', 'Site Patrols'], icon: '🚧' }
 ];
 
 export const securityVenues = [

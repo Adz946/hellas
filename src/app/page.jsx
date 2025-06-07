@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import { InfoRow } from '@/components/homeElements/infoRow';
-import { ItemRow } from '@/components/homeElements/ItemRow';
-import { TextGroup } from '@/components/homeElements/TextGroup';
-import { reasonCategories, benefitCategories, serviceCategories } from '@/lib/serviceList';
+import WhyBlock from '@/components/home/whyUs';
+import BenefitBlock from '@/components/home/Benefits';
+import ServiceBlock from '@/components/home/Services';
+import MobileSlideshow from '@/components/home/Slideshow';
 
 export default function Home() {
 	return (
 		<main className="flex-grow bg-primary text-main">
 			{/* HERO */}
-			<div className="w-full animate-imageSlideIn">
-				<img src="/images/HERO.png" alt="Hero Banner" className="w-full h-auto object-cover" />
+			<div className="w-full animate-imageSlideIn aspect-[12/10] md:aspect-auto">
+				<img src="/images/HERO.png" alt="Hero Banner" className="w-full h-full object-cover object-center" />
 			</div>
 
 			{/* BOOK SELECT */}
@@ -21,44 +21,40 @@ export default function Home() {
 			</div>
 
 			{/* INFO [WHY US] */}
-			<div className="w-full flex flex-row bg-surface">
-				<div className="w-2/3 flex flex-col text-center justify-center">
+			<div className="w-full flex flex-col-reverse lg:flex-row bg-surface">
+				<div className="lg:w-2/3 px-2 py-4 flex flex-col text-center justify-center">
 					<h3 className="w-full h3">WHY US</h3>
-					{reasonCategories.map(({id, text}) => { return <TextGroup key={id} text={text} />; })}
+					<WhyBlock />
 					<h4 className="w-full h4">Licensed & Registered</h4>
 				</div>
 
-				<div className="relative w-1/3 aspect-[0.80] animate-imageSlideIn">
+				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
 					<Image fill src={"/images/IMG_C.png"} alt='Depiction of 2 guards, arms crossed' />
 				</div>
 			</div>
 
 			{/* INFO [BENEFITS] */}
-			<div className="w-full flex flex-row">
-				<div className="relative w-1/3 aspect-[0.80] animate-imageSlideIn">
+			<div className="w-full flex flex-col lg:flex-row">
+				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
 					<Image fill src={"/images/IMG_D.png"} alt='Depiction of a guard watching over a party' />
 				</div>
 
-				<div className="w-2/3 flex flex-col text-center justify-center">
+				<div className="lg:w-2/3 px-2 py-4 flex flex-col text-center items-center justify-center">
 					<h3 className="w-full h3">SERVICE BENEFITS</h3>
-					{benefitCategories.map(({id, b1, b2}) => { return <InfoRow key={id} text_1={b1} text_2={b2} />; })}
+					<BenefitBlock />
 					<h4 className="w-full h4">Emergency Responders <br/> (First Aid)</h4>
 				</div>
 			</div>
 
 			{/* INFO [SERVICES] */}
-			<div className="w-full flex flex-row bg-surface">
-				<div className="w-2/3 flex flex-col text-center justify-center">
+			<div className="w-full flex flex-col-reverse lg:flex-row bg-surface">
+				<div className="lg:w-2/3 px-2 py-4 flex flex-col text-center justify-center">
 					<h3 className="w-full h3">OUR SERVICES</h3>
-
-					{serviceCategories.map(({id, labels, icon}) => {
-						return <ItemRow key={id} text_1={labels[0]} text_2={labels[1]} icon={icon} />;
-					})}
-
-					<h4 className="w-full h4"> Ensuring Safety & Well-Being of Patrons</h4>
+					<ServiceBlock />
+					<h4 className="w-full h4">Ensuring Safety & Well-Being of Patrons</h4>
 				</div>
 
-				<div className="relative w-1/3 aspect-[0.80] animate-imageSlideIn">
+				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
 					<Image fill src={"/images/IMG_B.png"} alt='Depiction of a guard protecting an event' />
 				</div>
 			</div>
@@ -69,7 +65,9 @@ export default function Home() {
 			</div>
 
 			{/* SLIDESHOW */}
-			<div className="flex w-full animate-imageSlideIn">
+			<MobileSlideshow />
+
+			<div className="w-full hidden lg:flex animate-imageSlideIn">
 				<img src="/images/IMG_A.png" alt="EXAMPLE A" className="slide" />
 				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide" />
 				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide" />

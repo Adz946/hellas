@@ -45,7 +45,7 @@ export default function SectionTime({ onAdvance }) {
         <section className="sect">
             <h5 className="h5 text-center">Select Start Time</h5>
 
-            <div className="w-full lg:w-1/2 flex flex-col gap-3">
+            <div className="w-full xl:w-1/2 flex flex-col gap-3">
                 <TimeInput id="start_time" value={start} onChange={setStart} placeholder="11:00 AM" />
                 <TimeDuration initialStack={initialStack} onChange={handleDurationChange} />
             </div>

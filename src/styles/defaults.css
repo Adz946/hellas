@@ -17,7 +17,7 @@ body { overflow-x: hidden; }
 .slide { @apply w-0 flex-grow h-auto transform transition-transform duration-300 ease-out hover:scale-105 hover:rounded-2xl; }
 
 /* BUTTONS */
-.btn { @apply block w-full lg:w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl text-center; }
+.btn { @apply block w-7/8 lg:w-2/4 my-2 py-3 px-4 bg-accent rounded-2xl text-center; }
 .btn-hover { @apply hover:scale-110 hover:bg-accent-hover hover:translate-y-1; }
 .btn-scale { @apply transition-transform duration-300 ease-out hover:scale-115 }
 
