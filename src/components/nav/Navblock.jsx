@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Menu, X, Mail, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { MobileShape } from "./MobileShape";
 import { usePathname } from "next/navigation";
+import DisplayContact from "../ContactElements";
 
 export function Navblock() {
     const pathname = usePathname();
@@ -30,20 +31,8 @@ export function Navblock() {
                         <a href="/book" onClick={() => setIsOpen(false)} className={`text-accent text-3xl font-bold opacity-50
                             ${pathname === "/book" ? "opacity-100" : ""}`} > Book Now </a>
 
-                        <div className="w-full gap-4 flex flex-col text-main">
-                            <span className="w-full gap-4 px-4 py-2 flex flex-row items-center bg-surface rounded-lg">
-                                <Mail className="h-full aspect-square" />
-                                <p> hellasscrt@gmail.com </p>
-                            </span>
-
-                            <span className="w-full gap-4 px-4 py-2 flex flex-row items-center bg-surface rounded-lg">
-                                <Phone className="h-full aspect-square" />
-                                <p> 0466 309 744 </p>
-                            </span>
-                        </div>
+                        <DisplayContact classes={"w-full gap-4 flex flex-col text-main"} textSize={"text-lg"} />
                     </div>
-
-                    
                 </div>
             )}
         </nav>

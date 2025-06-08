@@ -55,15 +55,15 @@ export function TimeDuration({ initialStack, onChange }) {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                <button onClick={() => addDuration(15)} className="btn-tr btn-time btn-tr-hover"> + 15min </button>
-                <button onClick={() => addDuration(30)} className="btn-tr btn-time btn-tr-hover"> + 30min </button>
-                <button onClick={() => addDuration(60)} className="btn-tr btn-time btn-tr-hover"> + 1hr </button>
-                <button onClick={() => addDuration(120)} className="btn-tr btn-time btn-tr-hover"> + 2hr </button>
+                <button onClick={() => addDuration(15)} className="btn-tr btn-time animate btn-tr-scale"> + 15min </button>
+                <button onClick={() => addDuration(30)} className="btn-tr btn-time animate btn-tr-scale"> + 30min </button>
+                <button onClick={() => addDuration(60)} className="btn-tr btn-time animate btn-tr-scale"> + 1hr </button>
+                <button onClick={() => addDuration(120)} className="btn-tr btn-time animate btn-tr-scale"> + 2hr </button>
             </div>
 
             <div className="flex gap-2">
-                <button onClick={handleClear} className="btn-tr btn-rem btn-tr-hover flex-1"> CLEAR </button>
-                <button onClick={handleUndo} className="btn-tr btn-rem btn-tr-hover flex-1"> UNDO </button>
+                <button onClick={handleClear} className="btn-tr btn-rem animate btn-tr-scale flex-1"> CLEAR </button>
+                <button onClick={handleUndo} className="btn-tr btn-rem animate btn-tr-scale flex-1"> UNDO </button>
             </div>
 
             <p id="duration_time_error" className="hidden text-error text-center"></p>

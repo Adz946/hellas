@@ -1,5 +1,5 @@
-import { getStateIcon, getStateStyles } from "@/lib/utils/menuStates";
 import { sectionOrder, sectionLabels } from "@/lib/utils/bookSections";
+import { getStateIcon, getStateStyles } from "@/components/bookings/menuStates";
 
 export default function Sidebar({ activeSection, sectionStates, goToSection }) {
     return (

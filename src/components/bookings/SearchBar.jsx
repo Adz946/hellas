@@ -30,7 +30,7 @@ export function SearchBar({ onAddressSelect }) {
     };
 
     return (
-        <div className="w-full lg:w-2/3">
+        <div className="w-full">
             <input type="text" value={query} onChange={handleSearch} className="w-full p-2 bg-surface rounded-md" 
                 placeholder="Search for an address in NSW, Australia" />
 

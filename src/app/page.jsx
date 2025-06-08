@@ -17,7 +17,7 @@ export default function Home() {
 				<p className="text-3xl text-active mb-5">Ready to Enhance Your Security?</p>
 				<p className="text-2xl text-inactive mb-5">Contact our team for all your security needs</p>
 
-				<a href="/book" className='btn btn-hover btn-scale'>Book Now</a>
+				<a href="/book" className='btn animate btn-scale'>Book Now</a>
 			</div>
 
 			{/* INFO [WHY US] */}
@@ -67,12 +67,12 @@ export default function Home() {
 			{/* SLIDESHOW */}
 			<MobileSlideshow />
 
-			<div className="w-full hidden lg:flex animate-imageSlideIn">
-				<img src="/images/IMG_A.png" alt="EXAMPLE A" className="slide" />
-				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide" />
-				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide" />
-				<img src="/images/IMG_D.png" alt="EXAMPLE D" className="slide" />
-				<img src="/images/IMG_E.png" alt="EXAMPLE E" className="slide" />			
+			<div className="w-full hidden lg:flex">
+				<img src="/images/IMG_A.png" alt="EXAMPLE A" className="slide animate img-scale" />
+				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide animate img-scale" />
+				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide animate img-scale" />
+				<img src="/images/IMG_D.png" alt="EXAMPLE D" className="slide animate img-scale" />
+				<img src="/images/IMG_E.png" alt="EXAMPLE E" className="slide animate img-scale" />			
 			</div>
 		</main>
 	)

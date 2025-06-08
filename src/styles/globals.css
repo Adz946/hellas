@@ -45,25 +45,3 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type="number"] { -moz-appearance: textfield; }
-
-/* ANIMATIONS */
-
-@keyframes fadeSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeSlideIn {
-  animation: fadeSlideIn 0.8s ease-in-out both;
-}
-
-.animate-imageSlideIn {
-  animation: fadeSlideIn 1s ease-in-out both;
-  animation-delay: 0.2s;
-}

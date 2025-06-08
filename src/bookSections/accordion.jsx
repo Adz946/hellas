@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { getStateIcon } from "@/lib/utils/menuStates";
+
 import { BookMover } from "@/lib/utils/bookMover";
+import { getStateIcon } from "@/components/bookings/menuStates";
 import { sectionOrder, sectionLabels, SectionComponents } from "@/lib/utils/bookSections";
 
 export default function Accordion({ activeSection, sectionStates, goToSection, advanceFlow }) {
@@ -8,7 +9,7 @@ export default function Accordion({ activeSection, sectionStates, goToSection, a
         <nav className="w-full max-w-md mx-auto my-4 rounded-xl shadow">
             <h3 className="h3 text-center">Your Booking</h3>
             
-            <ul className="divide-y divide-back">
+            <ul className="divide-y divide-inactive">
                 {sectionOrder.map((section) => {
                     const Section = SectionComponents[section];
                     const isOpen = activeSection === section;

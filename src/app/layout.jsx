@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { Footer } from "@/components/footer";
-import { NavSet } from "@/components/nav/NavSet";
+import NavSet from "@/components/nav/NavSet";
+import FootSet from "@/components/footer/FootSet";
 import { DM_Serif_Display } from 'next/font/google';
 
 const quoteFont = DM_Serif_Display({
@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={`flex flex-col min-h-screen bg-back ${quoteFont.variable}`}>
-				<NavSet />
-				{children}
-				<Footer />
+				<NavSet /> {children} <FootSet />
 			</body>
 		</html>
 	);

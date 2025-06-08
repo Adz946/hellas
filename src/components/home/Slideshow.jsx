@@ -92,22 +92,14 @@ export default function MobileSlideshow() {
                 </div>
 
                 {/* Left click area */}
-                <button
-                    onClick={handleLeftClick}
-                    className="absolute left-0 top-0 w-1/3 h-full z-10 flex items-center justify-start pl-4
-                               bg-transparent hover:bg-black/10 transition-colors duration-200"
-                    aria-label="Previous image"
-                >
+                <button onClick={handleLeftClick} aria-label="Previous image"
+                    className="absolute left-0 top-0 w-1/3 h-full z-10 flex items-center justify-start pl-4 bg-transparent" >
                     <ChevronLeft className="w-8 h-8 text-white/80 drop-shadow-lg" />
                 </button>
 
                 {/* Right click area */}
-                <button
-                    onClick={handleRightClick}
-                    className="absolute right-0 top-0 w-1/3 h-full z-10 flex items-center justify-end pr-4
-                               bg-transparent hover:bg-black/10 transition-colors duration-200"
-                    aria-label="Next image"
-                >
+                <button onClick={handleRightClick} aria-label="Next image"
+                    className="absolute right-0 top-0 w-1/3 h-full z-10 flex items-center justify-end pr-4 bg-transparent" >
                     <ChevronRight className="w-8 h-8 text-white/80 drop-shadow-lg" />
                 </button>
             </div>
@@ -115,16 +107,9 @@ export default function MobileSlideshow() {
             {/* Dots indicator */}
             <div className="flex justify-center gap-2 py-4 bg-primary">
                 {slideImages.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => goToSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                            index === currentIndex 
-                                ? 'bg-accent' 
-                                : 'bg-inactive hover:bg-main'
-                        }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                    />
+                    <button key={index} onClick={() => goToSlide(index)} aria-label={`Go to slide ${index + 1}`}
+                        className={`w-3 h-3 rounded-full transition-colors duration-200 
+                            ${ index === currentIndex ? 'bg-accent' : 'bg-inactive hover:bg-main'}`} />
                 ))}
             </div>
         </div>

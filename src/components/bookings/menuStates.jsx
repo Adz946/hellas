@@ -14,19 +14,19 @@ export const getStateIcon = (state) => {
 };
 
 export const getStateStyles = (state, isActive) => {
-    const baseStyles = "w-full flex items-center justify-between px-4 py-2 my-1 rounded transition-colors duration-150";
+    const baseStyles = "w-full flex items-center justify-between px-4 py-2 my-1 rounded-md transition-colors duration-150";
     
     if (state === "locked") {
         return `${baseStyles} opacity-50 cursor-not-allowed text-inactive`;
     }
     
     if (isActive) {
-        return `${baseStyles} bg-accent/10 text-accent font-bold`;
+        return `${baseStyles} bg-accent/10 text-accent font-bold cursor-pointer`;
     }
     
     if (state === "complete") {
-        return `${baseStyles} text-success hover:bg-success/5`;
+        return `${baseStyles} text-success hover:bg-success/15 cursor-pointer`;
     }
     
-    return `${baseStyles} text-main hover:bg-accent/5`;
+    return `${baseStyles} text-main hover:bg-accent/15`;
 };

@@ -19,16 +19,16 @@ export default function Book() {
     const { activeSection, sectionStates, goToSection, advanceFlow, } = useBookingFlow();
 
     return (
-        <main className="flex-grow bg-primary text-main">
+        <main className="flex-grow bg-primary text-main xl:h-[calc(100vh-7.5rem-7rem)]">
             {isMobile ? (
                 <div className="flex flex-col">
                     <Accordion activeSection={activeSection} sectionStates={sectionStates} goToSection={goToSection} 
                         advanceFlow={advanceFlow} />
                 </div>
             ) : (
-                <div className="flex flex-row">
+                <div className="flex flex-row h-full">
                     <Sidebar activeSection={activeSection} sectionStates={sectionStates} goToSection={goToSection} />
-                    <div className="flex-grow">
+                    <div className="flex-grow overflow-y-auto">
                         <BookMover section={SectionComponents[activeSection]} activeSection={activeSection}
                             onAdvance={() => advanceFlow(activeSection)} />
                     </div>

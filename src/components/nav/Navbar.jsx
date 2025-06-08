@@ -2,8 +2,8 @@
 import React from "react";
 import { Info } from "lucide-react";
 import { NavShape } from "./NavShape";
-import { IconShape } from "./IconShape";
 import { usePathname } from "next/navigation";
+import DisplayContact from "../ContactElements";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -11,30 +11,19 @@ export function Navbar() {
     return (
         <nav className="w-full h-full flex flex-col">
 
-            <div className="w-full h-1/2 flex items-center justify-end gap-5 px-5">
-                <a href="/" className={`font-semibold transform transition-transform duration-500 ease-out hover:scale-125 
-                    hover:text-main ${pathname === "/" ? "text-main" : "text-inactive scale-90"}`}>Home</a>
+            <div className="w-full h-1/2 flex items-center justify-end gap-10 px-5">
+                <a href="/" className={`nav-link animate nav-scale text-main text-lg 
+                    ${pathname === "/" ? "nav-active" : "nav-inactive"}`}>Home</a>
 
-                <a href="/book" className={`text-accent text-xl font-semibold transform transition-transform duration-500 
-                ease-out hover:scale-115 ${pathname !== "/book" ? "opacity-75 hover:opacity-100" : null}`}>Book Now</a>
+                <a href="/book" className={`nav-link animate nav-scale text-accent text-2xl
+                    ${pathname === "/book" ? "nav-active" : "nav-inactive"}`}>Book Now</a>
             </div>
 
-            <div className="w-full h-1/2 flex items-center gap-15 relative">
+            <div className="w-full h-1/2 flex items-center relative">
                 <NavShape />
 
-                <div className="h-full gap-5 flex-grow flex justify-end items-center relative">
-                    <div className="text-main font-semibold text-right"> 
-                        <p> 0466 309 744 </p>
-                        <p> hellasscrt@gmail.com </p>
-                    </div>
-                    
-
-                    <div className="relative flex items-center justify-center h-full aspect-square"> 
-                        <IconShape /> 
-                        
-                        <Info className="h-[2em] w-[2em] stroke-surface absolute z-10 transition-transform duration-300 
-                            hover:scale-110 hover:stroke-primary" />
-                    </div>
+                <div className="h-full pr-5 gap-5 flex-grow flex justify-end items-center relative">
+                    <DisplayContact classes={"text-main font-semibold text-right"} textSize={"text-md"} />
                 </div>
             </div>
         </nav>
