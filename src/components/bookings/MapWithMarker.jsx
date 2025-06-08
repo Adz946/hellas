@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import { reverseGeocode } from "@/lib/utils/geocoding";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX;
@@ -11,7 +11,7 @@ export function MapWithMarker({ coordinates, onLocationChange }) {
     const markerRef = useRef(null);
 
     useEffect(() => {
-        if (!mapContainerRef.current) return;      
+        if (!mapContainerRef.current) return;
         const defaultCoords = [151.2093, -33.8688];
 
         mapRef.current = new mapboxgl.Map({
@@ -21,20 +21,22 @@ export function MapWithMarker({ coordinates, onLocationChange }) {
             zoom: 12,
         });
 
-        markerRef.current = new mapboxgl.Marker({ color: '#FF0000' })
+        markerRef.current = new mapboxgl.Marker({ color: "#FF0000" })
             .setLngLat(defaultCoords)
             .addTo(mapRef.current);
 
-        mapRef.current.on('click', async (e) => {
+        mapRef.current.on("click", async (e) => {
             const { lng, lat } = e.lngLat;
             markerRef.current.setLngLat([lng, lat]);
 
             try {
                 const data = await reverseGeocode(lng, lat);
-                const address = data.features[0]?.place_name || "Unknown location";
+                const address =
+                    data.features[0]?.place_name || "Unknown location";
                 onLocationChange?.({ address, coordinates: [lng, lat] });
-            } 
-            catch (error) { console.error('Geocoding error:', error); }
+            } catch (error) {
+                console.error("Geocoding error:", error);
+            }
         });
 
         return () => {
@@ -42,14 +44,24 @@ export function MapWithMarker({ coordinates, onLocationChange }) {
             if (mapRef.current) mapRef.current.remove();
         };
     }, []);
-    
+
     useEffect(() => {
-        if (markerRef.current && mapRef.current && 
-            Array.isArray(coordinates) && coordinates.length === 2) {
+        if (
+            markerRef.current &&
+            mapRef.current &&
+            Array.isArray(coordinates) &&
+            coordinates.length === 2
+        ) {
             markerRef.current.setLngLat(coordinates);
             mapRef.current.flyTo({ center: coordinates, zoom: 12 });
         }
     }, [coordinates]);
 
-    return <div ref={mapContainerRef} className="w-full" style={{ height: "50vh" }} />;
+    return (
+        <div
+            ref={mapContainerRef}
+            className="w-full"
+            style={{ height: "50vh" }}
+        />
+    );
 }
