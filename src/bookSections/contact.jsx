@@ -3,6 +3,7 @@ import { securityVenues } from "@/lib/serviceList";
 import { getFromStorage } from '@/lib/utils/bookStorage';
 import { ConfirmBtn } from "@/components/bookings/ConfirmBtn";
 import { User, Mail, Phone, ChevronDown } from "lucide-react";
+import { ToggleGroup } from '@/components/bookings/ToggleGroup';
 import { InputWithIcon } from "@/components/bookings/InputWithIcon";
 import { validateContactForm } from "@/lib/validation/contactValidator";
 
@@ -14,6 +15,7 @@ export default function SectionContact({ onAdvance }) {
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [service, setService] = useState("");
+    const [contact, setContact] = useState("email");
 
     useEffect(() => {
         if (savedData) {
@@ -21,11 +23,12 @@ export default function SectionContact({ onAdvance }) {
             if (savedData.email) { setEmail(savedData.email); }
             if (savedData.mobile) { setMobile(savedData.mobile); }
             if (savedData.service) { setService(savedData.service); }
+            if (savedData.contact) { setContact(savedData.contact); }
         }
     }, [savedData]);
 
     const handleValidate = () => {
-        const hasError = validateContactForm({ name, email, mobile, service });
+        const hasError = validateContactForm({ name, email, mobile, service, contact });
         if (!hasError) { onAdvance(); }
     };
 
@@ -49,6 +52,9 @@ export default function SectionContact({ onAdvance }) {
                     <ChevronDown className="chevron" />
                     <p id="contact_service_error" className="hidden text-error text-center"></p>
                 </div>
+
+                <ToggleGroup id="contact_method" title="How should we confirm your booking?" selected={contact} 
+                    onSelect={setContact} options={[{ id: "email", label: "📧 Email" }, { id: "sms", label: "📱 SMS" }]}  />
             </div>  
 
             <ConfirmBtn section="contact" onAdvance={handleValidate} />

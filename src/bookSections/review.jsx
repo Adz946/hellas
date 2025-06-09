@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { securityVenues } from "@/lib/serviceList";
 import { getFromStorage } from "@/lib/utils/bookStorage";
 import { ReviewItem } from "@/components/bookings/ReviewItem";
-import { formatDuration, formatDate } from "@/lib/utils/formatDuration";
-import { User, Mail, Phone, Shield, Users, Badge, CakeSlice, Wine, Calendar, Clock, Hourglass, MapPin } from "lucide-react";
+import { formatDuration, formatDate, formatMobile } from "@/lib/utils/formatItems";
+import { User, Mail, Phone, Shield, Users, Badge, CakeSlice, Wine, Calendar, Clock, Hourglass, MapPin, ArrowBigDownDash } from "lucide-react";
 
 function SectionCard({ icon: Icon, title, children }) {
     return (
@@ -19,6 +19,9 @@ function SectionCard({ icon: Icon, title, children }) {
 }
 
 export default function SectionReview() {
+    const [message, setMessage] = useState("");
+    const [msgClass, setMsgClass] = useState("hidden");
+
     const [contactData, setContactData] = useState(null);
     const [eventData, setEventData] = useState(null);
     const [dateData, setDateData] = useState(null);
@@ -33,11 +36,6 @@ export default function SectionReview() {
         setLocationData(getFromStorage("location"));
     }, []);
 
-    const getServiceLabel = (serviceId) => {
-        const service = securityVenues.find(venue => venue.id === serviceId);
-        return service ? service.label : "Service not selected";
-    };
-
     if (!contactData || !eventData || !dateData || !timeData || !locationData) {
         return (
         <section className="sect">
@@ -46,14 +44,64 @@ export default function SectionReview() {
         );
     }
 
+    const getServiceLabel = (serviceId) => {
+        const service = securityVenues.find(venue => venue.id === serviceId);
+        return service ? service.label : "Service not selected";
+    };
+
+    const submitBooking = async () => {      
+        setMsgClass("hidden"); setMessage("");
+
+        try {
+            const response = await fetch("/api/send-booking-confirmation", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    type: contactData.contact, 
+                    contact: contactData.contact === "email" ? contactData.email : formatMobile(contactData.mobile), 
+                    data: {
+                        name: contactData.name,
+                        service: getServiceLabel(contactData.service),
+                        guards: eventData.guard,
+                        date: formatDate(dateData.date),
+                        start: timeData.start,
+                        duration: formatDuration(timeData.duration),
+                        location: locationData.location.address
+                    }
+                })
+            })
+
+            if (response.ok) {
+                console.info("Booking Confirmation Sent");
+                const contactMethod = contactData.contact === "email" ? "Email" : "SMS";
+
+                setMsgClass("text-success");
+                setMessage(`Booking Confirmed & ${contactMethod} Sent`);
+            } else {
+                const error = await response.json();
+                console.error('Failed to send confirmation:', error); 
+
+                setMsgClass("text-error");
+                setMessage(`Failed to send confirmation. Please try again.`);
+            }
+        }
+         catch (error) { 
+            console.error('Failed to send confirmation:', error); 
+
+            setMsgClass("text-error");
+            setMessage(`An error has occurred, please try again.`);
+        }
+    }
+
     return (
         <section className="sect">
             {/* Contact Info */}
             <SectionCard icon={User} title="Contact Information">
-                <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                     <ReviewItem content={contactData.name} label="Name / Company" icon={User} />
                     <ReviewItem content={contactData.email} label="Contact Email" icon={Mail} />
                     <ReviewItem content={contactData.mobile} label="Contact Mobile" icon={Phone} />
+                    <ReviewItem content={contactData.contact} label="Contact Method" icon={ArrowBigDownDash} />
                 </div>
             </SectionCard>
 
@@ -98,6 +146,12 @@ export default function SectionReview() {
                     ))}
                 </div>
             </SectionCard>
+
+            {/* Submit */}
+            <div className="w-full flex flex-col items-center justify-center">
+                <button id={`submit_button`} onClick={submitBooking} className='btn animate btn-scale'>Submit Booking</button> 
+                <p className={`${msgClass} text-center`}>{message}</p>
+            </div>
         </section>
     );
 }

@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@adz946/true-name": "^1.0.1",
+    "@aws-sdk/client-ses": "^3.826.0",
+    "@aws-sdk/client-sns": "^3.826.0",
+    "@sendgrid/mail": "^8.1.5",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.12.1",
     "hellas": "file:",
@@ -18,7 +21,8 @@
     "next": "15.3.2",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "twilio": "^5.7.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

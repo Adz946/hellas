@@ -54,7 +54,7 @@ export default function SectionEvent({ onAdvance }) {
                         options={[ { id: "under 18", label: "- 18" }, { id: "over 18", label: "+ 18" }, ]} />
 
                     {audience === "under 18" ? (
-                        <div className="w-full lg:w-1/2 gap-3 flex flex-col text-center items-center">
+                        <div className="w-full gap-3 flex flex-col text-center items-center">
                             <h5 className="h5 w-full">Alcohol Presence</h5>
                             <p className="text-center text-sm text-primary w-3/4 bg-inactive rounded-xl p-2">
                                 ⚠️ For this age group, alcohol service is automatically disabled in line with current event regulations.

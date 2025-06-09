@@ -16,7 +16,7 @@ export default function NavSet() {
 
     return (
         <div className="w-full h-30 gap-10 flex flex-row justify-between bg-primary">
-            <SetLogo classes={"h-full aspect-square animate img-scale"} size={150} />
+            <SetLogo classes={"h-full aspect-square animate img-scale"} size={isMobile ? 200 : 150} />
             {isMobile ? <Navblock /> : <Navbar />}
         </div>
     );

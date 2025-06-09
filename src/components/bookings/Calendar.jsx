@@ -46,6 +46,10 @@ export default function Calendar({ selectedDate, onSelect }) {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
     };
 
+    const createDateOnly = (date) => {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
+
     const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const days = generateCalendarDays();
 
@@ -88,7 +92,7 @@ export default function Calendar({ selectedDate, onSelect }) {
                             return (
                                 <button
                                     key={idx}
-                                    onClick={() => !isDisabled && onSelect(day)}
+                                    onClick={() => !isDisabled && onSelect(createDateOnly(day))}
                                     disabled={isDisabled}
                                     className={`
                                         py-1 rounded-full w-8 h-8 mx-auto
