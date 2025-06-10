@@ -1,6 +1,6 @@
-export function ReviewItem({ content, label, icon: Icon }) {
+export function ReviewItem({ content, label, icon: Icon, classes = "" }) {
     return (
-        <div className={`w-full px-4 py-2 flex flex-col items-center`}>
+        <div className={`w-full px-4 py-2 flex flex-col items-center ${classes}`}>
             <p className="px-2 text-main text-center text-md">{content}</p>
             <hr className="w-full border-t border-inactive my-1" />
 

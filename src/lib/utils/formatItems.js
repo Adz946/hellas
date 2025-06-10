@@ -1,3 +1,8 @@
+export function capitalizeString(str) {
+    if (!str || str.length === 0) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function formatMobile(mobile) {
     const rawMobile = mobile.trim().replace(/\s+/g, '');
     return rawMobile.startsWith('0') ? rawMobile.replace(/^0/, '+61') : rawMobile;

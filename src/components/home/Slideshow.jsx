@@ -5,9 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const slideImages = [
     { src: "/images/IMG_A.png", alt: "Security Example A" },
     { src: "/images/IMG_B.png", alt: "Security Example B" },
-    { src: "/images/IMG_C.png", alt: "Security Example C" },
-    { src: "/images/IMG_D.png", alt: "Security Example D" },
-    { src: "/images/IMG_E.png", alt: "Security Example E" }
+    { src: "/images/IMG_C.png", alt: "Security Example C" }
 ];
 
 export default function MobileSlideshow() {
