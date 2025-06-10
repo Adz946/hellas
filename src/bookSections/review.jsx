@@ -2,25 +2,14 @@ import { useState, useEffect } from "react";
 import { securityVenues } from "@/lib/serviceList";
 import { getFromStorage } from "@/lib/utils/bookStorage";
 import { ReviewItem } from "@/components/bookings/ReviewItem";
-import { formatDuration, formatDate, formatMobile } from "@/lib/utils/formatItems";
-import { User, Mail, Phone, Shield, Users, Badge, CakeSlice, Wine, Calendar, Clock, Hourglass, MapPin, ArrowBigDownDash } from "lucide-react";
-
-function SectionCard({ icon: Icon, title, children }) {
-    return (
-        <div className="w-full bg-surface rounded-2xl p-4 mb-4 hover:scale-105 hover:shadow-2xl hover:shadow-back
-            transform transition-transform duration-300 ease-out">
-            <div className="flex items-center justify-center mb-4 gap-2">
-                <Icon className="text-accent w-6 h-6" />
-                <h5 className="h5">{title}</h5>
-            </div>
-            {children}
-        </div>
-    );
-}
+import { SectionCard } from "@/components/bookings/SectionCards";
+import { formatDuration, formatDate, formatMobile, capitalizeString } from "@/lib/utils/formatItems";
+import { User, Mail, Phone, Shield, Users, Badge, CakeSlice, Wine, Calendar, Clock, Hourglass, MapPin, ArrowBigUpDash, Home } from "lucide-react";
 
 export default function SectionReview() {
     const [message, setMessage] = useState("");
     const [msgClass, setMsgClass] = useState("hidden");
+    const [contactType, setContactType] = useState("Email"); 
 
     const [contactData, setContactData] = useState(null);
     const [eventData, setEventData] = useState(null);
@@ -29,7 +18,11 @@ export default function SectionReview() {
     const [locationData, setLocationData] = useState(null);
 
     useEffect(() => {
-        setContactData(getFromStorage("contact"));
+        const contactD = getFromStorage("contact");
+
+        setContactData(contactD);
+        setContactType(contactD.contact === "email" ? "Email" : "SMS");
+
         setEventData(getFromStorage("event"));
         setDateData(getFromStorage("date"));
         setTimeData(getFromStorage("time"));
@@ -73,13 +66,12 @@ export default function SectionReview() {
 
             if (response.ok) {
                 console.info("Booking Confirmation Sent");
-                const contactMethod = contactData.contact === "email" ? "Email" : "SMS";
 
                 setMsgClass("text-success");
-                setMessage(`Booking Confirmed & ${contactMethod} Sent`);
+                setMessage(`Booking Confirmed & ${contactType} Sent`);
             } else {
                 const error = await response.json();
-                console.error('Failed to send confirmation:', error); 
+                console.error(`Failed to send ${contactType} confirmation:`, error); 
 
                 setMsgClass("text-error");
                 setMessage(`Failed to send confirmation. Please try again.`);
@@ -101,7 +93,7 @@ export default function SectionReview() {
                     <ReviewItem content={contactData.name} label="Name / Company" icon={User} />
                     <ReviewItem content={contactData.email} label="Contact Email" icon={Mail} />
                     <ReviewItem content={contactData.mobile} label="Contact Mobile" icon={Phone} />
-                    <ReviewItem content={contactData.contact} label="Contact Method" icon={ArrowBigDownDash} />
+                    <ReviewItem content={contactType} label="Contact Method" icon={ArrowBigUpDash} />
                 </div>
             </SectionCard>
 
@@ -111,9 +103,9 @@ export default function SectionReview() {
                     grid-cols-1 gap-4`}>
                     <ReviewItem content={eventData.guest} label="Guest Count" icon={Users} />
                     <ReviewItem content={eventData.guard} label="Guard Count" icon={Badge} />
-                    <ReviewItem content={eventData.audience} label="Audience Group" icon={CakeSlice} />
+                    <ReviewItem content={capitalizeString(eventData.audience)} label="Audience Group" icon={CakeSlice} />
                     {eventData.audience !== "under 18" && (
-                        <ReviewItem content={eventData.alcohol} label="Alcohol Presence" icon={Wine} />
+                        <ReviewItem content={capitalizeString(eventData.alcohol)} label="Alcohol Presence" icon={Wine} />
                     )}
                 </div>
             </SectionCard>
@@ -133,7 +125,14 @@ export default function SectionReview() {
 
             {/* Location */}
             <SectionCard icon={MapPin} title="Location">
-                <ReviewItem content={locationData.location.address} label="Location" icon={MapPin} />
+                <div className={`grid grid-cols-1 ${locationData.hasUnit === "yes" ? "xl:grid-cols-4" : ""}`}>
+                    <ReviewItem content={locationData.location.address} label="Location" icon={MapPin} 
+                        classes="xl:col-span-3" />
+
+                    {locationData.hasUnit === "yes" && (
+                        <ReviewItem content={`#${locationData.unitNum}`} label="Unit Number" icon={Home} />
+                    )}
+                </div>
             </SectionCard>
 
             {/* Service */}

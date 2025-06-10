@@ -29,14 +29,14 @@ export default function Home() {
 				</div>
 
 				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
-					<Image fill src={"/images/IMG_C.png"} alt='Depiction of 2 guards, arms crossed' />
+					<Image fill src={"/images/IMG_A.png"} alt='Depiction of 2 guards, arms crossed' />
 				</div>
 			</div>
 
 			{/* INFO [BENEFITS] */}
 			<div className="w-full flex flex-col lg:flex-row">
 				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
-					<Image fill src={"/images/IMG_D.png"} alt='Depiction of a guard watching over a party' />
+					<Image fill src={"/images/IMG_B.png"} alt='Depiction of a guard watching over a party' />
 				</div>
 
 				<div className="lg:w-2/3 px-2 py-4 flex flex-col text-center items-center justify-center">
@@ -55,7 +55,7 @@ export default function Home() {
 				</div>
 
 				<div className="relative lg:w-1/3 aspect-[0.80] animate-imageSlideIn">
-					<Image fill src={"/images/IMG_B.png"} alt='Depiction of a guard protecting an event' />
+					<Image fill src={"/images/IMG_C.png"} alt='Depiction of a guard protecting an event' />
 				</div>
 			</div>
 
@@ -70,9 +70,7 @@ export default function Home() {
 			<div className="w-full hidden lg:flex">
 				<img src="/images/IMG_A.png" alt="EXAMPLE A" className="slide animate img-scale" />
 				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide animate img-scale" />
-				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide animate img-scale" />
-				<img src="/images/IMG_D.png" alt="EXAMPLE D" className="slide animate img-scale" />
-				<img src="/images/IMG_E.png" alt="EXAMPLE E" className="slide animate img-scale" />			
+				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide animate img-scale" />	
 			</div>
 		</main>
 	)
