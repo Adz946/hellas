@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 export default function NavSet() {
     const [isMobile, setIsMobile] = useState(false);
-
+    
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
@@ -16,7 +16,7 @@ export default function NavSet() {
 
     return (
         <div className="w-full h-30 gap-10 flex flex-row justify-between bg-primary border-b-1 border-primary">
-            <SetLogo classes={"h-full aspect-square animate img-scale"} size={isMobile ? 200 : 150} />
+            <SetLogo classes={"h-full aspect-square animate img-scale"} wd={isMobile ? 200 : 150} ht={isMobile ? 150 : 200} />
             {isMobile ? <Navblock /> : <Navbar />}
         </div>
     );

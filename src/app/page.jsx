@@ -1,23 +1,40 @@
 import Image from 'next/image';
 import WhyBlock from '@/components/home/whyUs';
+import BackToTop from '@/components/home/BackToTop';
 import BenefitBlock from '@/components/home/Benefits';
 import ServiceBlock from '@/components/home/Services';
 import MobileSlideshow from '@/components/home/Slideshow';
+import { ShieldCheck } from 'lucide-react';
 
 export default function Home() {
 	return (
 		<main className="flex-grow bg-primary text-main">
 			{/* HERO */}
 			<div className="w-full animate-imageSlideIn aspect-[12/10] md:aspect-auto">
-				<img src="/images/HERO.png" alt="Hero Banner" className="w-full h-full object-cover object-center" />
+				<img src="/images/HERO_2.png" alt="Hero Banner" className="w-full h-full object-cover object-center" />
 			</div>
 
 			{/* BOOK SELECT */}
 			<div className="w-full text-center flex flex-col items-center py-25">
 				<p className="text-3xl text-active mb-5">Ready to Enhance Your Security?</p>
-				<p className="text-2xl text-inactive mb-5">Contact our team for all your security needs</p>
-
+				<p className="text-2xl text-inactive mb-2">Contact our team for all your security needs. Or</p>
 				<a href="/book" className='btn animate btn-scale'>Book Now</a>
+			</div>
+
+			{/* SERVICES TEXT */}
+			<div className="w-full bg-back gap-5 flex flex-col lg:flex-row py-10 items-center justify-center 
+				border-y-2 border-main/25">
+				<p className="lg:w-1/2 px-5 lg:px-25 leading-relaxed text-lg text-main text-center">
+					Hellas Security delivers professional security services across all types of venues and events. 
+					From corporate functions and sporting events to private parties and retail establishments, our 
+					licensed team provides <strong>tailored protection solutions</strong> including access control, 
+					crowd management, conflict resolution, and emergency response. Whether you need static security, 
+					bodyguard services, or event security, we ensure the safety and peace of mind of all patrons with 
+					our experienced and reliable approach.
+				</p>
+
+				<Image src={"/images/SERVICE_IMG.jpg"} alt='A guard, professional looking, protecting.' width={350} height={350}
+					className='rounded-2xl' />
 			</div>
 
 			{/* INFO [WHY US] */}
@@ -72,6 +89,8 @@ export default function Home() {
 				<img src="/images/IMG_B.png" alt="EXAMPLE B" className="slide animate img-scale" />
 				<img src="/images/IMG_C.png" alt="EXAMPLE C" className="slide animate img-scale" />	
 			</div>
+
+			<BackToTop />
 		</main>
 	)
 }
